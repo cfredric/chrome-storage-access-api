@@ -2,6 +2,8 @@
 
 Chrome [recently indicated](https://github.com/privacycg/storage-access/pull/165) that it will implement and support the [Storage Access API](https://github.com/privacycg/storage-access). This means that Chrome will implement all the behaviors and APIs listed in the [specification](https://privacycg.github.io/storage-access/), and will additionally have its own user-agent-specific behaviors (the same way that Safari and Firefox [currently do](https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API#safari_implementation_differences)). The below is a description of Chrome's plans for its implementation-defined behavior; these plans may evolve over time.
 
+This document includes [instructions](#testing-instructions) for how to test these semantics locally, in order to evaluate whether they'll work for you use case.
+
 ## Announcements
 
 Check back here for links to announcements of shipping timelines, etc., once those have been published. We will post to [blink-dev@chromium.org](https://groups.google.com/u/1/a/chromium.org/g/blink-dev) (as per the usual [Blink shipping process](https://blog.chromium.org/2019/11/intent-to-explain-demystifying-blink.html)) when we're ready.
@@ -69,6 +71,21 @@ When such requirements are satisfied and an embedded third-party requests storag
 In Chrome's settings, users will be able to view a list of previously granted and denied permissions, and be able to revoke past decisions. This feature will provide users with transparency and control, and it will also allow developers to test the API with expected user behaviors on their local machine.
 
 When Chrome ships the Storage Access API to address a broader suite of use cases, we anticipate learnings that will inform how to best communicate to users about the permission being requested. We are committed to delivering a meaningful user experience that balances privacy and frictionless browsing.
+
+### Testing instructions
+
+Chrome's implementation can be tested today in Chrome M117. (At the time of writing, M117 is available on the [Canary](https://www.google.com/chrome/canary/) channel of Chrome; [in the future](https://chromiumdash.appspot.com/schedule), it will also be available on the [Beta](https://www.google.com/chrome/beta/) and [Dev](https://www.google.com/chrome/dev/) channels.) To enable the behaviors described in this doc locally, you can enable two flags on `chrome://flags`. Specifically, set the `#storage-access-api` flag to "Enabled (with prompt)"; set the `#permission-storage-access-api` flag to "Enabled". Then, restart your browser (using the button at the bottom of `chrome://flags`, or by visiting `chrome://restart`) to make the flags take effect.
+
+![image of Storage Access API flags](./images/flags.png)
+
+It's also possible to enable this functionality via the command-line, using Chrome's `--enable-features` option with the right comma-separated list of flags, like this:
+
+```
+google-chrome \
+--enable-features="StorageAccessAPI:storage_access_api_auto_deny_outside_fps/false,PermissionStorageAccessAPI"
+```
+
+If you uncover bugs in Chrome's behavior while testing locally, please [file a bug](https://bugs.chromium.org/p/chromium/issues/entry?components=Blink%3EStorageAccessAPI)!
 
 ----
 
