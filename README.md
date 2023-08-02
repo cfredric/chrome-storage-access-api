@@ -8,8 +8,8 @@ This document includes [instructions](#testing-instructions) for how to test the
 
 Check back here for links to announcements of shipping timelines, etc., once those have been published. We will post to [blink-dev@chromium.org](https://groups.google.com/u/1/a/chromium.org/g/blink-dev) (as per the usual [Blink shipping process](https://blog.chromium.org/2019/11/intent-to-explain-demystifying-blink.html)) when we're ready.
 
-* [Intent to Prototype](https://groups.google.com/u/1/a/chromium.org/g/blink-dev/c/zt-nqGpURNY/m/FF6ciM6qAwAJ)
-* Intent to Ship: TBD
+* [Intent to Prototype](https://groups.google.com/u/1/a/chromium.org/g/blink-dev/c/zt-nqGpURNY)
+* [Intent to Ship](https://groups.google.com/u/1/a/chromium.org/g/blink-dev/c/JHf7CWXDZUc)
 
 # Design Details
 ## Behaviors defined in the specification
