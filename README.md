@@ -85,6 +85,8 @@ google-chrome \
 --enable-features="StorageAccessAPI:storage_access_api_auto_deny_outside_fps/false,PermissionStorageAccessAPI"
 ```
 
+When testing your site, please be sure that it satisfies the Storage Access API's constraints (particularly its [security measures](https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API#security_measures)) as well as [Chrome's additional constraints](#requesting-storage-access-permission).
+
 If you uncover bugs in Chrome's behavior while testing locally, please [file a bug](https://bugs.chromium.org/p/chromium/issues/entry?components=Blink%3EStorageAccessAPI)!
 
 ----
