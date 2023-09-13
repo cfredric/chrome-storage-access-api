@@ -29,7 +29,7 @@ As a high-level summary, every spec-compliant browser will do the following for 
 
 As noted above, the final step of the algorithm is partially implementation-defined, so that different browsers have leeway to implement their own policies and constraints. Firefox's and Safari's behavioral differences are documented [here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API#safari_implementation_differences). Chrome's behavior when `document.requestStorageAccess` requests the `storage-access` permission is as follows:.
 
-1. Check if the embedded site and the top-level site are in the same First-Party Set. If so, grant permission to `<embedded site, top-level site>`, and return.<sup>[1](#footnote1)</sup>
+1. Check if the embedded site and the top-level site are in the same Related Website Set (formerly known as First-Party Set). If so, grant permission to `<embedded site, top-level site>`, and return.<sup>[1](#footnote1)</sup>
 1. If the user has never interacted with the embedded site in a top-level context (i.e. while the embedded site is shown in the Chrome Omnibox), keep the permission status as "ask", and return.<sup>[2](#footnote2)</sup>
 1. Issue a prompt to the user to ask whether the user wants to grant permission, deny it, or ignore the request.
 
@@ -39,15 +39,15 @@ A key point in the `document.requestStorageAccess` algorithm is that it checks f
 
 With that in mind: there will be at least one additional way to grant `storage-access` permission in Chrome:
 
-* Via [`document.requestStorageAccessFor`](https://github.com/privacycg/requestStorageAccessFor). This API is the gateway to requesting the `top-level-storage-access` permission, which is a superset of the `storage-access` permission. As such, successful calls to `document.requestStorageAccessFor` also create a `storage-access` permission grant. Currently, this API is only supported within First-Party Sets in Chrome.
+* Via [`document.requestStorageAccessFor`](https://github.com/privacycg/requestStorageAccessFor). This API is the gateway to requesting the `top-level-storage-access` permission, which is a superset of the `storage-access` permission. As such, successful calls to `document.requestStorageAccessFor` also create a `storage-access` permission grant. Currently, this API is only supported within Related Website Sets in Chrome.
 
 ### Permission lifetimes
 
 Similar to the above, a browser can also control the lifetimes of the `storage-access` permission grants/denials it creates, such that those decisions expire at different times based on the source of the grant and on the user's behavior.
 
-* Permission grants via `document.requestStorageAccess` due to First-Party Set membership will have a lifetime of 24 hours. We intentionally choose a short lifetime here, since sites in the same First-Party Set can call `document.requestStorageAccess` again once the grant expires, and Chrome will auto-grant the request.
+* Permission grants via `document.requestStorageAccess` due to Related Website Set membership will have a lifetime of 24 hours. We intentionally choose a short lifetime here, since sites in the same Related Website Set can call `document.requestStorageAccess` again once the grant expires, and Chrome will auto-grant the request.
 * Permission grants and denials via `document.requestStorageAccess` and the user prompt will have a lifetime of 30 days.
-* Permission grants via `document.requestStorageAccessFor` have a duration of 24 hours. Chrome does not support `document.requestStorageAccessFor` usage outside of First-Party Sets, so this short lifetime was chosen intentionally for the same reasons noted above.
+* Permission grants via `document.requestStorageAccessFor` have a duration of 24 hours. Chrome does not support `document.requestStorageAccessFor` usage outside of Related Website Sets, so this short lifetime was chosen intentionally for the same reasons noted above.
 
 In addition to choosing different grant lifetimes, Chrome will allow certain user behaviors to "renew" relevant grants, resetting their lifetimes to what they originally started as (depending on the source of the grant). In particular:
 
@@ -91,7 +91,7 @@ If you uncover bugs in Chrome's behavior while testing locally, please [file a b
 
 ----
 
-<a name="footnote1">1</a>: This follows the [First-Party Sets specification](https://wicg.github.io/first-party-sets/#storage-access-integration) which Chrome implements, but which is not supported by other browsers at the moment.
+<a name="footnote1">1</a>: This follows the [Related Website Sets specification](https://wicg.github.io/first-party-sets/#storage-access-integration) which Chrome implements, but which is not supported by other browsers at the moment.
 
 <a name="footnote2">2</a>: Note that this will cause the `document.requestStorageAccess` promise to reject, since permission was not granted.
 
