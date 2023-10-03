@@ -45,9 +45,9 @@ With that in mind: there will be at least one additional way to grant `storage-a
 
 Similar to the above, a browser can also control the lifetimes of the `storage-access` permission grants/denials it creates, such that those decisions expire at different times based on the source of the grant and on the user's behavior.
 
-* Permission grants via `document.requestStorageAccess` due to Related Website Set membership will have a lifetime of 24 hours. We intentionally choose a short lifetime here, since sites in the same Related Website Set can call `document.requestStorageAccess` again once the grant expires, and Chrome will auto-grant the request.
+* Permission grants via `document.requestStorageAccess` due to Related Website Set membership will have a lifetime of 30 days. We previously chose a shorter lifetime here, since sites in the same Related Website Set can call `document.requestStorageAccess` again once the grant expires, and Chrome will auto-grant the request; but we have since decided that requiring a user gesture more frequently for RWS sites than for unrelated sites is an unnecessary "penalty".
 * Permission grants and denials via `document.requestStorageAccess` and the user prompt will have a lifetime of 30 days.
-* Permission grants via `document.requestStorageAccessFor` have a duration of 24 hours. Chrome does not support `document.requestStorageAccessFor` usage outside of Related Website Sets, so this short lifetime was chosen intentionally for the same reasons noted above.
+* Permission grants via `document.requestStorageAccessFor` have a duration of 30 days. Chrome does not support `document.requestStorageAccessFor` usage outside of Related Website Sets, so this lifetime was chosen for the same reasons noted above.
 
 In addition to choosing different grant lifetimes, Chrome will allow certain user behaviors to "renew" relevant grants, resetting their lifetimes to what they originally started as (depending on the source of the grant). In particular:
 
