@@ -30,7 +30,7 @@ As a high-level summary, every spec-compliant browser will do the following for 
 As noted above, the final step of the algorithm is partially implementation-defined, so that different browsers have leeway to implement their own policies and constraints. Firefox's and Safari's behavioral differences are documented [here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API#safari_implementation_differences). Chrome's behavior when `document.requestStorageAccess` requests the `storage-access` permission is as follows:.
 
 1. Check if the embedded site and the top-level site are in the same Related Website Set (formerly known as First-Party Set). If so, grant permission to `<embedded site, top-level site>`, and return.<sup>[1](#footnote1)</sup>
-1. If the user has never interacted with the embedded site in a top-level context (i.e. while the embedded site is shown in the Chrome Omnibox), keep the permission status as "ask", and return.<sup>[2](#footnote2)</sup>
+1. If the user has not interacted with the embedded site in a top-level context (i.e. while the embedded site is shown in the Chrome Omnibox) within the last 30 days, keep the permission status as "ask", and return.<sup>[2](#footnote2)</sup>
 1. Issue a prompt to the user to ask whether the user wants to grant permission, deny it, or ignore the request.
 
 ### Obtaining `storage-access` permission in other ways
