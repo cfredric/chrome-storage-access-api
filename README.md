@@ -2,7 +2,7 @@
 
 Chrome [recently indicated](https://github.com/privacycg/storage-access/pull/165) that it will implement and support the [Storage Access API](https://github.com/privacycg/storage-access). This means that Chrome will implement all the behaviors and APIs listed in the [specification](https://privacycg.github.io/storage-access/), and will additionally have its own user-agent-specific behaviors (the same way that Safari and Firefox [currently do](https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API#safari_implementation_differences)). The below is a description of Chrome's plans for its implementation-defined behavior; these plans may evolve over time.
 
-This document includes [instructions](#testing-instructions) for how to test these semantics locally, in order to evaluate whether they'll work for you use case.
+This document includes [instructions](#testing-instructions) for how to test these semantics locally, in order to evaluate whether they'll work for your use case.
 
 ## Announcements
 
