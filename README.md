@@ -68,7 +68,7 @@ When such requirements are satisfied and an embedded third-party requests storag
 * If the user denies the request, Chrome will store the denial, setting the lifetime as described above. During the lifetime of a permission denial, the user will not be prompted for subsequent access requests that match the scope of the denial.
 * If the user dismisses the request, Chrome will not store any decision, and will not grant the permission. The embedded site can continue to request permission, and those requests may create prompts in the future.
 
-In Chrome's settings, users will be able to view a list of previously granted and denied permissions, and be able to revoke past decisions. This feature will provide users with transparency and control, and it will also allow developers to test the API with expected user behaviors on their local machine.
+In Chrome's settings, users will be able to view a list of previously granted and denied permissions, and be able to revoke past decisions. This feature will provide users with transparency and control, and it will also allow developers to test the API with expected user behaviors on their local machine. (As of Chrome 117, this UI is available at `chrome://settings/content/storageAccess`.)
 
 When Chrome ships the Storage Access API to address a broader suite of use cases, we anticipate learnings that will inform how to best communicate to users about the permission being requested. We are committed to delivering a meaningful user experience that balances privacy and frictionless browsing.
 
